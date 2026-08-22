@@ -73,17 +73,23 @@ export function Footer() {
           items={[
             { label: "Privacy Policy", to: "/privacy" },
             { label: "Terms & Conditions", to: "/terms" },
+            { label: "Cancellation & Refund Policy", to: "/cancellation-refund-policy" },
           ]}
         />
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/10 flex">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © 2026 Mayank Gangwar & Company. All rights reserved.{" "}
-            <Link to="/auth" className="text-white/70 underline-offset-4 hover:underline">
+            {/* <Link to="/auth" className="text-white/70 underline-offset-4 hover:underline">
               Admin
-            </Link>
+            </Link> */}
+          </p>
+        </div>
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            Designed & Developed by : <a href="https://gtsol.in" className="text-white/70 underline-offset-4 hover:underline">GTS - Ganesh Tech Solution</a>
           </p>
         </div>
       </div>

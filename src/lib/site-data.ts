@@ -167,7 +167,7 @@ export const inr = (n: number) => "₹" + n.toLocaleString("en-IN");
 
 export const SITE = {
   name: "Mayank Gangwar & Company",
-  email: "hello@mgcaindia.com",
-  phone: "+91 98765 43210",
-  address: "Chartered Accountants, India",
+  email: "contact@camayankgangwar.com",
+  phone: "+91 89389 74273",
+  address: "Hathras, Uttar Pradesh, India 204101",
 };

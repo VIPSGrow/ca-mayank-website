@@ -14,11 +14,14 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BookRouteImport } from './routes/book'
+import { Route as CancellationRefundPolicyRouteImport } from './routes/cancellation-refund-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as FinancialHealthCheckRouteImport } from './routes/financial-health-check'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -47,6 +50,12 @@ const BookRoute = BookRouteImport.update({
   path: '/book',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CancellationRefundPolicyRoute =
+  CancellationRefundPolicyRouteImport.update({
+    id: '/cancellation-refund-policy',
+    path: '/cancellation-refund-policy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -67,9 +76,19 @@ const HowItWorksRoute = HowItWorksRouteImport.update({
   path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -93,11 +112,14 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/book': typeof BookRoute
+  '/cancellation-refund-policy': typeof CancellationRefundPolicyRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/financial-health-check': typeof FinancialHealthCheckRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -107,11 +129,14 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/book': typeof BookRoute
+  '/cancellation-refund-policy': typeof CancellationRefundPolicyRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/financial-health-check': typeof FinancialHealthCheckRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -123,11 +148,14 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/book': typeof BookRoute
+  '/cancellation-refund-policy': typeof CancellationRefundPolicyRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/financial-health-check': typeof FinancialHealthCheckRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -139,11 +167,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/book'
+    | '/cancellation-refund-policy'
     | '/contact'
     | '/dashboard'
     | '/financial-health-check'
     | '/how-it-works'
+    | '/privacy'
     | '/services'
+    | '/terms'
     | '/admin'
     | '/blog/$slug'
     | '/blog/'
@@ -153,11 +184,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/book'
+    | '/cancellation-refund-policy'
     | '/contact'
     | '/dashboard'
     | '/financial-health-check'
     | '/how-it-works'
+    | '/privacy'
     | '/services'
+    | '/terms'
     | '/admin'
     | '/blog/$slug'
     | '/blog'
@@ -168,11 +202,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/book'
+    | '/cancellation-refund-policy'
     | '/contact'
     | '/dashboard'
     | '/financial-health-check'
     | '/how-it-works'
+    | '/privacy'
     | '/services'
+    | '/terms'
     | '/_authenticated/admin'
     | '/blog/$slug'
     | '/blog/'
@@ -184,11 +221,14 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   BookRoute: typeof BookRoute
+  CancellationRefundPolicyRoute: typeof CancellationRefundPolicyRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   FinancialHealthCheckRoute: typeof FinancialHealthCheckRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
+  TermsRoute: typeof TermsRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
@@ -230,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cancellation-refund-policy': {
+      id: '/cancellation-refund-policy'
+      path: '/cancellation-refund-policy'
+      fullPath: '/cancellation-refund-policy'
+      preLoaderRoute: typeof CancellationRefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -258,11 +305,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -306,11 +367,14 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   BookRoute: BookRoute,
+  CancellationRefundPolicyRoute: CancellationRefundPolicyRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   FinancialHealthCheckRoute: FinancialHealthCheckRoute,
   HowItWorksRoute: HowItWorksRoute,
+  PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
+  TermsRoute: TermsRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
 }
