@@ -1,15 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { createRazorpayOrder, verifyRazorpayPayment } from "@/lib/razorpay.server";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Section, SectionHeading } from "@/components/site/sections";
 import { TIME_SLOTS } from "@/lib/site-data";
 import { Check, CreditCard } from "lucide-react";
+
+declare global {
+  interface Window {
+    Razorpay: new (options: RazorpayOptions) => RazorpayInstance;
+  }
+}
+
+interface RazorpayOptions {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  order_id: string;
+  prefill?: Record<string, string>;
+  handler: (response: RazorpayResponse) => void;
+  modal?: { ondismiss: () => void };
+  theme?: { color: string };
+}
+
+interface RazorpayResponse {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
+interface RazorpayInstance {
+  open: () => void;
+}
 
 const TITLE = "Book a Consultation | Mayank Gangwar & Company";
 const DESC =
@@ -55,6 +85,31 @@ function BookPage() {
   const [slot, setSlot] = useState("");
   const [details, setDetails] = useState<Details | null>(null);
   const [done, setDone] = useState(false);
+  const [razorpayReady, setRazorpayReady] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.Razorpay) {
+      setRazorpayReady(true);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => setRazorpayReady(true);
+    script.onerror = () => {
+      console.error("[Razorpay] Failed to load checkout script");
+      toast.error("Payment gateway failed to load. Please refresh.");
+    };
+    document.body.appendChild(script);
+
+    return () => {
+      if (script.parentNode) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
 
   const { data: bookedSlots = [] } = useQuery({
     queryKey: ["booked_slots", date],
@@ -92,24 +147,92 @@ function BookPage() {
 
   async function pay() {
     if (!fee || !details) return;
-    setPaying(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    const { error } = await supabase.from("bookings").insert({
-      name: details.name,
-      email: details.email,
-      phone: details.phone,
-      service: service ?? "Consultation",
-      booking_fee: fee,
-      payment_status: "paid",
-      booking_date: date,
-      booking_time: slot,
-    });
-    setPaying(false);
-    if (error) {
-      toast.error("Payment captured but booking failed. Please contact us.");
+    if (!razorpayReady || !window.Razorpay) {
+      toast.error("Payment gateway is still loading. Please wait a moment.");
       return;
     }
-    setDone(true);
+    setPaying(true);
+
+    try {
+      const order = await createRazorpayOrder({
+        data: {
+          amount: fee*100,
+          currency: "INR",
+          receipt: `booking_${Date.now()}`,
+        },
+      });
+
+      const razorpayKeyId = import.meta.env["VITE_RAZORPAY_KEY_ID"] || "rzp_test_TSkfk9QNVuZ7Ru";
+
+      const options = {
+        key: razorpayKeyId,
+        amount: order.amount,
+        currency: order.currency,
+        name: "Mayank Gangwar & Company",
+        description: FEES.find((f) => f.amount === fee)?.label ?? "Consultation",
+        order_id: order.id,
+        prefill: {
+          name: details.name,
+          email: details.email,
+          contact: details.phone,
+        },
+        handler: async function (response: {
+          razorpay_order_id: string;
+          razorpay_payment_id: string;
+          razorpay_signature: string;
+        }) {
+          const verification = await verifyRazorpayPayment({
+            data: {
+              order_id: response.razorpay_order_id,
+              payment_id: response.razorpay_payment_id,
+              signature: response.razorpay_signature,
+            },
+          });
+
+          if (!verification.valid) {
+            toast.error("Payment verification failed. Please contact us.");
+            setPaying(false);
+            return;
+          }
+
+          const { error } = await supabase.from("bookings").insert({
+            name: details.name,
+            email: details.email,
+            phone: details.phone,
+            service: service ?? "Consultation",
+            booking_fee: fee,
+            payment_status: "paid",
+            payment_reference: response.razorpay_payment_id,
+            booking_date: date,
+            booking_time: slot,
+          });
+
+          if (error) {
+            toast.error("Payment verified but booking failed. Please contact us.");
+            setPaying(false);
+            return;
+          }
+
+          setDone(true);
+          toast.success("Booking confirmed!");
+        },
+        modal: {
+          ondismiss: function () {
+            setPaying(false);
+          },
+        },
+        theme: {
+          color: "#0f172a",
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      console.error("[Razorpay] Payment initiation failed:", err);
+      toast.error("Failed to initiate payment. Please try again.");
+      setPaying(false);
+    }
   }
 
   return (

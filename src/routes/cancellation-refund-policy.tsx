@@ -24,17 +24,16 @@ function Refund() {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Cancellation &amp; Refund Policy
           </h1>
-          <p className="mt-2 text-sm text-slate-500">
-            Last Updated: August 2026
-          </p>
+          <p className="mt-2 text-sm text-slate-500">Last Updated: August 2026</p>
         </header>
 
         <section className="space-y-8 text-slate-600 leading-relaxed text-sm sm:text-base">
           <div>
             <p>
-              At <strong>Mayank Gangwar &amp; Company, Chartered Accountants</strong>, we strive to deliver
-              timely, professional, and valuable advisory sessions for our nominal consultation fee of{" "}
-              <strong>₹99</strong>. Please review our policy regarding schedule changes, cancellations, and fee refunds below.
+              At <strong>Mayank Gangwar &amp; Company, Chartered Accountants</strong>, we strive to
+              deliver timely, professional, and valuable advisory sessions for our nominal
+              consultation fee of <strong>₹99</strong>. Please review our policy regarding schedule
+              changes, cancellations, and fee refunds below.
             </p>
           </div>
 
@@ -44,24 +43,25 @@ function Refund() {
             </h2>
             <ul className="list-disc pl-5 space-y-1">
               <li>
-                <strong>Prior to 2 hours of slot time:</strong> If you cancel your scheduled consultation at least 2 hours
-                before the appointed time, you are eligible to reschedule the session without any extra charge.
+                <strong>Prior to 2 hours of slot time:</strong> If you cancel your scheduled
+                consultation at least 2 hours before the appointed time, you are eligible to
+                reschedule the session without any extra charge.
               </li>
               <li>
-                <strong>No-Shows &amp; Late Cancellations:</strong> If you fail to join the meeting within 10 minutes of the
-                scheduled time or cancel with less than 2 hours notice, the consultation slot shall be deemed fulfilled, and
-                the ₹99 fee is <strong>non-refundable</strong>.
+                <strong>No-Shows &amp; Late Cancellations:</strong> If you fail to join the meeting
+                within 10 minutes of the scheduled time or cancel with less than 2 hours notice, the
+                consultation slot shall be deemed fulfilled, and the ₹99 fee is{" "}
+                <strong>non-refundable</strong>.
               </li>
             </ul>
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold text-slate-900 mb-2">
-              2. Rescheduling Policy
-            </h2>
+            <h2 className="text-lg font-semibold text-slate-900 mb-2">2. Rescheduling Policy</h2>
             <p>
-              We understand that unforeseen professional or personal conflicts arise. You can easily reschedule your
-              consultation slot using the link provided in your confirmation email/SMS up to 2 hours before your session begins.
+              We understand that unforeseen professional or personal conflicts arise. You can easily
+              reschedule your consultation slot using the link provided in your confirmation
+              email/SMS up to 2 hours before your session begins.
             </p>
           </div>
 
@@ -70,14 +70,17 @@ function Refund() {
               3. Cancellation &amp; Refunds by the Firm
             </h2>
             <p>
-              In rare instances where a Chartered Accountant must cancel an appointment due to urgent professional commitments
-              or technical failures:
+              In rare instances where a Chartered Accountant must cancel an appointment due to
+              urgent professional commitments or technical failures:
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
-              <li>You will be given the option to immediately reschedule to the next available priority slot.</li>
               <li>
-                If you prefer not to reschedule, a <strong>100% full refund (₹99)</strong> will be processed to your original
-                payment method.
+                You will be given the option to immediately reschedule to the next available
+                priority slot.
+              </li>
+              <li>
+                If you prefer not to reschedule, a <strong>100% full refund (₹99)</strong> will be
+                processed to your original payment method.
               </li>
             </ul>
           </div>
@@ -87,25 +90,37 @@ function Refund() {
               4. Refund Processing Timeline
             </h2>
             <p>
-              For approved refunds (arising from technical double-charges, gateway errors, or cancellations by the Firm):
+              For approved refunds (arising from technical double-charges, gateway errors, or
+              cancellations by the Firm):
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1">
-              <li>Refunds are initiated through Razorpay back to your original source account (UPI, credit/debit card, or net banking).</li>
-              <li>The credited amount typically reflects in your account within <strong>5 to 7 working days</strong>, depending on your banking partner.</li>
+              <li>
+                Refunds are initiated through Razorpay back to your original source account (UPI,
+                credit/debit card, or net banking).
+              </li>
+              <li>
+                The credited amount typically reflects in your account within{" "}
+                <strong>5 to 7 working days</strong>, depending on your banking partner.
+              </li>
             </ul>
           </div>
 
           <div className="border-t border-slate-200 pt-6">
-            <h2 className="text-lg font-semibold text-slate-900 mb-2">
-              5. Support Desk
-            </h2>
+            <h2 className="text-lg font-semibold text-slate-900 mb-2">5. Support Desk</h2>
             <p className="mb-3">
-              If you faced a payment failure, double deduction, or need help rescheduling your ₹99 consultation, reach out to us:
+              If you faced a payment failure, double deduction, or need help rescheduling your ₹99
+              consultation, reach out to us:
             </p>
             <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 text-sm space-y-1">
-              <p><strong>Firm:</strong> Mayank Gangwar &amp; Company, Chartered Accountants</p>
-              <p><strong>Email:</strong> contact@camayankgangwar.com</p>
-              <p><strong>Support Phone:</strong> +91-89389 74273</p>
+              <p>
+                <strong>Firm:</strong> Mayank Gangwar &amp; Company, Chartered Accountants
+              </p>
+              <p>
+                <strong>Email:</strong> contact@camayankgangwar.com
+              </p>
+              <p>
+                <strong>Support Phone:</strong> +91-89389 74273
+              </p>
             </div>
           </div>
         </section>

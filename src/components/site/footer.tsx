@@ -89,7 +89,10 @@ export function Footer() {
         </div>
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            Designed & Developed by : <a href="https://gtsol.in" className="text-white/70 underline-offset-4 hover:underline">GTS - Ganesh Tech Solution</a>
+            Designed & Developed by :{" "}
+            <a href="https://gtsol.in" className="text-white/70 underline-offset-4 hover:underline">
+              GTS - Ganesh Tech Solution
+            </a>
           </p>
         </div>
       </div>

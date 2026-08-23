@@ -85,8 +85,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Ca Mayank Gangwar" },
       { name: "description", content: "" },
       { name: "author", content: "Mayank Gangwar" },
-      { property: "og:title", content: "Financial Clarity & Personal CFO Services | Mayank Gangwar & Company App" },
-      { property: "og:description", content: "Financial clarity, financial health audits, tax planning, investment review and Personal CFO services for salaried professionals and high-income individuals." },
+      {
+        property: "og:title",
+        content: "Financial Clarity & Personal CFO Services | Mayank Gangwar & Company App",
+      },
+      {
+        property: "og:description",
+        content:
+          "Financial clarity, financial health audits, tax planning, investment review and Personal CFO services for salaried professionals and high-income individuals.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@camayankgangwar" },
